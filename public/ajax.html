@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if(xmlhttp.status == 201) {console.log(typeof xmlhttp.response);}
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	console.log("200 my log");
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+  
+xmlhttp.open("POST","http://localhost:3000/coll_sandbox",true);
+xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+xmlhttp.send(JSON.stringify({name:"Johasan1", age:"20"}));
+}
+function abc(j){
+console.log("padding .. >> ",j);
+}
+</script>
+<script type="text/javascript" src="http://localhost:3000/coll_sandbox"></script>
+</head>
+<body>
+
+<h2>AJAX</h2>
+<button type="button" onclick="loadXMLDoc()">Request data</button>
+<div id="myDiv"></div>
+
+</body>
+</html>
